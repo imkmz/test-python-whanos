@@ -1,9 +1,17 @@
-#!/usr/bin/env python3
-"""
-Test Python application for Whanos
-Execution: python -m app
-"""
+from flask import Flask
+import os
 
-if __name__ == "__main__":
-    print("[INFO] Hello from Whanos Python app!")
-    print("[SUCCESS] Python module execution successful")
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return '[INFO] Hello from Whanos Python app!\n[SUCCESS] Python module execution successful\n'
+
+@app.route('/health')
+def health():
+    return 'OK', 200
+
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 8080))
+    print(f"[INFO] Starting server on port {port}")
+    app.run(host='0.0.0.0', port=port, debug=False)

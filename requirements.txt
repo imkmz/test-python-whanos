@@ -1,1 +1,1 @@
-# Empty requirements for basic test
+Flask>=2.3.0
